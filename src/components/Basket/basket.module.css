@@ -1,0 +1,13 @@
+.basketWrapper {
+    display: inline;
+    margin: 0 25px;
+    button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-image: url('../../assets/icons/basket.png');
+        background-size: cover;
+        background-color: #fff;
+        cursor: pointer;
+    }
+}
