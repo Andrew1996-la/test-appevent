@@ -1,8 +1,9 @@
 import Button from "../Button/Button";
-import { FC } from "react";
+import {FC, useState} from "react";
 import cn from './product.module.css';
 import {useAppDispath} from "../../hooks";
 import {addToBasket} from "../../store/basketSlice";
+import {useNavigate} from "react-router-dom";
 
 interface IProduct {
     id: number
@@ -12,8 +13,15 @@ interface IProduct {
 }
 const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
     const dispath = useAppDispath();
-    const addProductToBasket = (product: any) => {
-        dispath(addToBasket(product))
+    const navigate = useNavigate();
+    const [buttonMessage, setButtonMessage] = useState('В корзину');
+    const addProductToBasket = (product: any): void => {
+        if(buttonMessage === 'Оформить заказ') {
+            navigate('/basket');
+        } else {
+            dispath(addToBasket(product))
+            setButtonMessage('Оформить заказ');
+        }
     }
 
     return (
@@ -24,7 +32,9 @@ const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
             </div>
             <div className={cn.product_buy}>
                 <div className={cn.product_buy_price}>Цена: {price} &#8381;</div>
-                <Button callback={() => addProductToBasket({title: title, urlImg: urlImg, price: price, id: id})}>В корзину</Button>
+                <Button callback={() => addProductToBasket({title: title, urlImg: urlImg, price: price, id: id})}>
+                    {buttonMessage}
+                </Button>
             </div>
         </div>
     )
