@@ -11,3 +11,9 @@
         cursor: pointer;
     }
 }
+
+.basketWrapper_counter {
+    display: flex;
+    justify-content: end;
+    color: var(--contrast-bgColor);
+}

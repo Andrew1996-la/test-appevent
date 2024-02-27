@@ -4,7 +4,6 @@ import Product from "../Product/Product";
 import cn from './productList.module.css';
 
 const ProductList = () => {
-
     const [products, setProducts] = useState<IProduct[] | []>([]);
 
     useEffect(() => {
@@ -25,6 +24,7 @@ const ProductList = () => {
             {products.map((product: IProduct) => (
                 <Product
                     key={product.id}
+                    id={product.id}
                     urlImg={product.image}
                     title={product.name}
                     price={product.price}

@@ -1,13 +1,21 @@
 import Button from "../Button/Button";
 import { FC } from "react";
 import cn from './product.module.css';
+import {useAppDispath} from "../../hooks";
+import {addToBasket} from "../../store/basketSlice";
 
 interface IProduct {
+    id: number
     title: string,
     urlImg: string,
     price: number,
 }
-const Product: FC<IProduct> = ({title, urlImg, price}) => {
+const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
+    const dispath = useAppDispath();
+    const addProductToBasket = (product: any) => {
+        dispath(addToBasket(product))
+    }
+
     return (
         <div className={cn.product}>
             <div className={cn.product_title} data-full-text={title}>{title}</div> {/*data-full-text - хак для отображения обрезных заголовков при наведении */}
@@ -16,7 +24,7 @@ const Product: FC<IProduct> = ({title, urlImg, price}) => {
             </div>
             <div className={cn.product_buy}>
                 <div className={cn.product_buy_price}>Цена: {price} &#8381;</div>
-                <Button>В корзину</Button>
+                <Button callback={() => addProductToBasket({title: title, urlImg: urlImg, price: price, id: id})}>В корзину</Button>
             </div>
         </div>
     )
