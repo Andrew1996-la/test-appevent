@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../api";
+import {getProductLocalStorage} from "../localstorageApi";
 
 interface IInitState {
     basketProduct: IProduct[] | [],
 }
 
 const initialState: IInitState = {
-    basketProduct: [],
+    basketProduct: getProductLocalStorage() || [],
 };
 
 const basketSlice = createSlice({

@@ -1,10 +1,25 @@
-import { configureStore } from "@reduxjs/toolkit";
-import basketReducer from "./basketSlice";
+import {configureStore, createListenerMiddleware, isAnyOf} from "@reduxjs/toolkit";
+import basketReducer, {addToBasket, removeFromBasket} from "./basketSlice";
+import {setProductInLocalStorage} from "../localstorageApi";
+
+export const listenerMiddleware = createListenerMiddleware();
+const actions = [addToBasket, removeFromBasket];
+
+listenerMiddleware.startListening({
+    matcher: isAnyOf(...actions),
+    effect: (_, listenerApi) => {
+        const state = listenerApi.getState() as RootState;
+        setProductInLocalStorage(state.basket.basketProduct as any);
+    },
+});
+
 
 const store = configureStore({
     reducer: {
         basket: basketReducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(listenerMiddleware.middleware),
 })
 
 export default store;
