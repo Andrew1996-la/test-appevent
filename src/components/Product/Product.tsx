@@ -12,14 +12,14 @@ interface IProduct {
     price: number,
 }
 const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
-    const dispath = useAppDispath();
+    const dispatch = useAppDispath();
     const navigate = useNavigate();
     const [buttonMessage, setButtonMessage] = useState('В корзину');
     const addProductToBasket = (product: any): void => {
         if(buttonMessage === 'Оформить заказ') {
             navigate('/basket');
         } else {
-            dispath(addToBasket(product))
+            dispatch(addToBasket(product))
             setButtonMessage('Оформить заказ');
         }
     }
