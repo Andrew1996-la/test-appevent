@@ -1,8 +1,11 @@
 import React from "react";
+import ProductListInBasket from "../../components/ProductListInBasket/ProductListInBasket";
 
 const BasketPage = () => {
     return (
-        <>basket</>
+        <section>
+            <ProductListInBasket />
+        </section>
     )
 }
 
