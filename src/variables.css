@@ -1,4 +1,8 @@
 :root {
     --main-font-color: #333333;
     --main-bgColor: #efefef;
+
+    --contrast-bgColor: #5bc25b;
+    --contrast-bgColorHover: #4aa54a ;
+    --contrast-font-color: #fff;
 }

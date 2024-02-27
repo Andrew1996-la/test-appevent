@@ -1,0 +1,16 @@
+@import "../../variables.css";
+
+.button {
+    width: 95px;
+    height: 25px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--contrast-bgColor);
+    color: var(--contrast-font-color);
+    transition: background-color .3s ease-in-out;
+}
+
+.button:hover {
+    background-color: var(--contrast-bgColorHover);
+}
