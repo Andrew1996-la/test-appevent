@@ -7,7 +7,7 @@
         border: none;
         background-image: url('../../assets/icons/basket.png');
         background-size: cover;
-        background-color: #fff;
+        background-color: var(--main-bgColor);
         cursor: pointer;
     }
 }
