@@ -10,7 +10,7 @@ interface IProduct {
 const Product: FC<IProduct> = ({title, urlImg, price}) => {
     return (
         <div className={cn.product}>
-            <div className={cn.product_title}>{title}</div>
+            <div className={cn.product_title} data-full-text={title}>{title}</div> {/*data-full-text - хак для отображения обрезных заголовков при наведении */}
             <div className={cn.product_img}>
                 <img src={urlImg} alt="product img"/>
             </div>
