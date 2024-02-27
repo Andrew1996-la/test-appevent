@@ -3,7 +3,7 @@ import cn from './basket.module.css';
 import {useAppSelector} from "../../hooks";
 const Basket = () => {
     const navigate = useNavigate();
-    const productCountInBasket:number = useAppSelector(state => state.basket.basketProduct.length);
+    const productCountInBasket: number = useAppSelector(state => state.basket.basketProduct.length);
     const goToBasket = () => {
         navigate('/basket');
     }
