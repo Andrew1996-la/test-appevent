@@ -14,13 +14,13 @@ interface IProduct {
 const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
     const dispatch = useAppDispath();
     const navigate = useNavigate();
-    const [buttonMessage, setButtonMessage] = useState('В корзину');
+    const [inBasketButtonMessage, setInBasketButtonMessage] = useState(false);
     const addProductToBasket = (product: any): void => {
-        if(buttonMessage === 'Оформить заказ') {
+        if(inBasketButtonMessage) {
             navigate('/basket');
         } else {
             dispatch(addToBasket(product))
-            setButtonMessage('Оформить заказ');
+            setInBasketButtonMessage(true);
         }
     }
 
@@ -33,7 +33,7 @@ const Product: FC<IProduct> = ({title, urlImg, price, id}) => {
             <div className={cn.product_buy}>
                 <div className={cn.product_buy_price}>Цена: {price} &#8381;</div>
                 <Button callback={() => addProductToBasket({title: title, urlImg: urlImg, price: price, id: id})}>
-                    {buttonMessage}
+                    {inBasketButtonMessage ? 'Оформить заказ' : 'В корзину'}
                 </Button>
             </div>
         </div>
